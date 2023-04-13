@@ -19,7 +19,7 @@ module.exports = {
         const helpEmbed = new EmbedBuilder()
             .setColor("Blurple")
             .setTitle("Mashu Help")
-            .setURL("https://discord.gg/86uPmnRqtj")
+            .setURL("https://github.com/ImNotBuddy/Mashu-Bot")
             .setAuthor({ name: "Mashu", iconURL: client.user.avatarURL() })
             .setDescription("Need some help?")
             .setTimestamp()

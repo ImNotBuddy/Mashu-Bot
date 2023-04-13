@@ -13,7 +13,7 @@ module.exports = {
 	 */
 
 	async execute(interaction) {
-        //const client = interaction.client;
+
 		await interaction.deferReply("");
 		const setupMessage = await interaction.channel.send("Setup is now in progress");
 		

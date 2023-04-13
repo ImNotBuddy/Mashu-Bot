@@ -28,7 +28,7 @@ module.exports = {
         }
 
         messageChannel.bulkDelete(deleteAmount)
-        .then(interaction.reply({ content: `Clearing ${deleteAmount} messages.`, ephemeral: true }))
+        .then(interaction.reply({ content: `Clearing ${deleteAmount} message(s).`, ephemeral: true }))
         .catch(err => {
             interaction.reply({ content: "There was an error executing that command.", ephemeral: true });
             return;
