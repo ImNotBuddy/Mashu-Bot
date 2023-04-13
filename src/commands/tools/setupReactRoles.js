@@ -16,11 +16,23 @@ module.exports = {
         //const client = interaction.client;
 		await interaction.deferReply("");
 		const setupMessage = await interaction.channel.send("Setup is now in progress");
-		const helpMessage = await interaction.channel.send("Please **ping all the role** or enter the **role IDs** seperated by a space");
-
+		
 		const filter = (message) => {
 			return message.author.id === interaction.user.id;
 		};
+
+		const helpMessage = await interaction.channel.send("Please type what text you want to be shown above the buttons");
+		let mainMessage = "";
+
+		await interaction.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ["time"] })
+		.then(collected => {
+			mainMessage = collected.first();
+		})
+		.catch(collected => {
+			interaction.editReply("Setup exited, time ran out.");
+		});
+
+		const roleHelpMessage = await interaction.channel.send("Please **ping all the role** or enter the **role IDs** seperated by a space");
 
 		await interaction.channel.awaitMessages({ filter, max: 1, time: 30000, errors: ["time"] })
 		.then (collected => {
@@ -43,8 +55,7 @@ module.exports = {
 			}
 
 			const rows = [];
-			console.log(roleIDs);
-			console.log(roleIDs[0])
+
 			for (let i = 1; i < (totalRows + 1); i++) {
 				const row = new ActionRowBuilder();
 				rows.push(row);
@@ -53,7 +64,6 @@ module.exports = {
 					const role = roleIDs[(i2)];
 
 					if (!role) {
-						console.log(`Returned at loop: ${i2+1}\nLast Role: ${roleIDs[i2-1]}`)
 						break;
 					}
 
@@ -65,19 +75,20 @@ module.exports = {
 			}
 
 			interaction.channel.send({
-				content: "Claim roles below",
+				content: mainMessage.content,
 				components: rows
 			})
 
 			interaction.channel.messages.delete(collected.first().id);
 			setupMessage.delete();
 			helpMessage.delete();
-			interaction.deleteReply()
+			interaction.channel.messages.delete(mainMessage.id);
+			roleHelpMessage.delete();
+			interaction.deleteReply();
 
 		})
 		.catch(collected => {
-			interaction.editReply("Setup exited due to time");
+			interaction.editReply("Setup exited, time ran out.");
 		})
-
-	},
+	}
 }
