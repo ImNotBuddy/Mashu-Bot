@@ -1,6 +1,6 @@
 # Mashu-Bot ReadMe
 
-# Powered by [Discord.js V14](https://discord.js.org/#/)
+### Powered by [Discord.js V14](https://discord.js.org/#/)
 
 ## Features
   1. The bot does not hard code specific-variables such as bot name or bot profile pricture. This means very little editing is needed. The only file that may        need to be edited is ```src/commands/information/botInfo.js```. This is because I just wanted to give my bot some personality, change it or delete it.
