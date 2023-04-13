@@ -32,7 +32,7 @@ module.exports = {
 				const role = interaction.guild.roles.cache.get(interaction.customId);
 				if (!role) {
 					interaction.editReply({
-						content: "Could not find that role",
+						content: "Could not find that role. Contact the server owner or admin as the role may have been deleted accidentally.",
 					});
 					return;
 				}
