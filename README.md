@@ -20,7 +20,7 @@
   4. Copy the bot's token, do not share this with anyone
       4.5. Invite the bot to your server. You can do this by pressing 'OAuth2' then 'URL Generator'. Next press the buttons ```bot``` and ```applications.commands```. Then under 'Bot Permissions' press admin or, if you have reviewed the source code press the ones you know apply.
   5. Go into the '.env' file and paste the line ```DISCORD_API_TOKEN=YOUR-TOKEN```. Replace 'YOUR-TOKEN' with the token you copied
-  6. Go into 'config.json' and change 'clientID' to the bot's ID and 'guildID' to the servers ID. [Guide (not from me)](https://www.youtube.com/watch?v=NLWtSHWKbAI)
+  6. Go into 'config.json' and change 'clientID' to the bot's ID and 'guildID' to the servers ID. You should also update 'ownerID' to your own ID. [Guide (not from me)](https://www.youtube.com/watch?v=NLWtSHWKbAI)
   7. Run ```node deploy-commands.js```. This registers the slash commands to the guild specified with the ID in 'config.json'. View the [Discord.js Docs](https://discordjs.guide/creating-your-bot/command-deployment.html#command-registration) for further info
   8. Open the code in VSCode or an editor and use ```node .``` to run the bot
   9. Type slash in a channel to access commands
