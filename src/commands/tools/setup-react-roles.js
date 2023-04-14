@@ -1,4 +1,4 @@
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Interaction, SlashCommandBuilder, Collection } = require("discord.js");
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Interaction, SlashCommandBuilder } = require("discord.js");
 
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase();
 
@@ -89,6 +89,6 @@ module.exports = {
 		})
 		.catch(collected => {
 			interaction.editReply("Setup exited, time ran out.");
-		})
+		});
 	}
 }

@@ -13,5 +13,5 @@ module.exports = {
 	async execute(interaction) {
         //const client = interaction.client;
 		await interaction.reply("Pong!");
-	},
+	}
 }

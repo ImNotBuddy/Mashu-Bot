@@ -29,5 +29,5 @@ module.exports = {
         } catch (error) {
             await interaction.editReply(`The subreddit ${subreddit} was not found/ did not have any images.`);
         }
-	},
+	}
 }

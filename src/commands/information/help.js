@@ -23,7 +23,7 @@ module.exports = {
             .setAuthor({ name: "Mashu", iconURL: client.user.avatarURL() })
             .setDescription("Need some help?")
             .setTimestamp()
-            .setFooter({ text: "Join our discord for further help"});
+            .setFooter({ text: "Join our discord for further help" });
         
         const fields = [];
         var commandDescriptions = {};
@@ -50,5 +50,5 @@ module.exports = {
 
         helpEmbed.addFields(fields);
 		await interaction.reply({ embeds: [helpEmbed] });
-	},
+	}
 }

@@ -38,5 +38,5 @@ module.exports = {
         } catch (error) {
             await interaction.reply("Not a valid user. They may not exist or are not in the server. Use `/userlookup` to search for a user outside of the guild");
         }
-    },
+    }
 }

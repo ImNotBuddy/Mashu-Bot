@@ -1,4 +1,4 @@
-const { Interaction, PermissionFlagsBits, SlashCommandBuilder, GuildBan } = require("discord.js");
+const { Interaction, PermissionFlagsBits, SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -30,5 +30,5 @@ module.exports = {
         } catch (error) {
             return;
         }
-	},
+	}
 }

@@ -33,5 +33,5 @@ module.exports = {
             interaction.reply({ content: "There was an error executing that command.", ephemeral: true });
             return;
         });
-	},
+	}
 }

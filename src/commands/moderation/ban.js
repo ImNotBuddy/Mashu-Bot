@@ -1,4 +1,4 @@
-const { Interaction, PermissionFlagsBits, SlashCommandBuilder, GuildBan } = require("discord.js");
+const { Interaction, PermissionFlagsBits, SlashCommandBuilder } = require("discord.js");
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -28,8 +28,10 @@ module.exports = {
         const client = interaction.client;
         const target = interaction.options.getUser("target");
         const reason = interaction.options.getString("reason") ?? "No reason was provided";
+
         client.users.send(target.id, `You where banned for: ${reason}`);
+        
         await interaction.reply(`Banned: ${target.username}#${target.discriminator}\nReason: ${reason}`);
         await interaction.guild.members.ban(target, { reason: reason }).catch(err => {return;});
-	},
+	}
 }

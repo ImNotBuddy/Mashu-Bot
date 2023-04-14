@@ -1,7 +1,7 @@
 const { EmbedBuilder, Interaction, SlashCommandBuilder } = require("discord.js");
 
 const axios = require("axios");
-require("dotenv/config")
+require("dotenv/config");
 
 async function api_request(userID) {
     const URL = `https://discord.com/api/users/${userID}`;
@@ -64,5 +64,5 @@ module.exports = {
             
             await interaction.reply({ embeds: [infoEmbed] });
         }
-    },
+    }
 }

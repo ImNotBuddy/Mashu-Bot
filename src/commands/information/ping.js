@@ -1,7 +1,6 @@
-const { Interaction, SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder } = require('discord.js');
 
 module.exports = {
-    //deleted: true,
 	data: new SlashCommandBuilder()
 		.setName("ping")
 		.setDescription("Replies with the bot's ping"),
@@ -12,5 +11,5 @@ module.exports = {
         const reply = await interaction.fetchReply();
         const ping = reply.createdTimestamp - interaction.createdTimestamp;
         interaction.editReply(`Pong!\nClient Ping: ${ping}ms\nWebsocket Ping: ${client.ws.ping}ms`)
-	},
+	}
 }
