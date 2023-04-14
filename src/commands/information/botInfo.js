@@ -1,6 +1,6 @@
 const { EmbedBuilder, Interaction, SlashCommandBuilder } = require("discord.js");
 
-const { ownerID } = require("../../config.json")
+const { ownerID } = require("../../configs/bot-config.json");
 
 module.exports = {
 	data: new SlashCommandBuilder()

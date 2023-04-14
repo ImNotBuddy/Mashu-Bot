@@ -14,7 +14,7 @@ module.exports = {
 
 	async execute(interaction) {
 
-		await interaction.deferReply("");
+		await interaction.deferReply();
 		const setupMessage = await interaction.channel.send("Setup is now in progress");
 		
 		const filter = (message) => {
@@ -30,6 +30,7 @@ module.exports = {
 		})
 		.catch(collected => {
 			interaction.editReply("Setup exited, time ran out.");
+			return;
 		});
 
 		const roleHelpMessage = await interaction.channel.send("Please **ping all the role** or enter the **role IDs** seperated by a space");

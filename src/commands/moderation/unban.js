@@ -28,6 +28,7 @@ module.exports = {
             await interaction.guild.members.unban(userID, reason);
             await interaction.reply(`Unbanned the user ID: ${userID}\nReason: ${reason}`);   
         } catch (error) {
+            await interaction.reply(`Something went wrong. Most likely not a valid user ID`);   
             return;
         }
 	}
