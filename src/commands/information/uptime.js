@@ -11,12 +11,15 @@ module.exports = {
      */
 
     async execute(interaction) {
+        const { default: prettyMs } = await import("pretty-ms")
+
         const client = interaction.client;
 
-        function generateReadyTimestamp() {
-            return `<t:${Math.floor(client.readyAt / 1000)}:R>`;
-        }
+        // function generateReadyTimestamp() {
+        //     return `<t:${Math.floor(client.readyAt / 1000)}:R>`;
+        // }
 
-        await interaction.reply(`Running since : ${generateReadyTimestamp()}`);
+        // await interaction.reply(`Running since : ${generateReadyTimestamp()}`);
+        await interaction.reply(`Bot uptime: ${prettyMs(client.uptime, { verbose: true })}`);
     }
 }
