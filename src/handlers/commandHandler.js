@@ -8,8 +8,8 @@ const path = require("node:path");
 //const commands = [];
 
 module.exports = async (client) => {
-    const foldersPath  = path.join(__dirname, "../commands")
-    const commandFolders = fs.readdirSync(foldersPath );
+    const foldersPath  = path.join(__dirname, "../commands");
+    const commandFolders = fs.readdirSync(foldersPath);
 
     for (const folder  of commandFolders) {
         const commandsPath = path.join(foldersPath, folder);

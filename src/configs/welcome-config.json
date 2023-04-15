@@ -1,8 +1,7 @@
 {
-    "Color": "#b734eb",
-    "Title": "avdv",
-    "Description": "aaa",
+    "Color": "#a742f5",
+    "Title": "buddy [serverName]",
+    "Description": "welcome [user]",
     "Image": "https://images-ext-2.discordapp.net/external/zeOueYiOkfq2sK_lDcoOcbQJkrSHMjwwW5iVtif4UVE/https/images-ext-1.discordapp.net/external/GmhzZlBLl-awQ-UhAUnnEPMTzYyHNxt8rE8WBAY8RJc/%253Fsize%253D512%2526width%253D0%2526height%253D0/https/cdn.discordapp.com/avatars/1059880098179858442/3bd45e930badd6ecbb718eb8ac7ec999.webp",
-    "MemberCount": true,
     "Channel": "1096535595016274071"
 }

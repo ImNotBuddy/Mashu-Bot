@@ -1,9 +1,8 @@
 const { EmbedBuilder, Interaction, SlashCommandBuilder } = require("discord.js");
 
-const fs = require("node:fs");
-const path = require("node:path");
+const chalk = require("chalk");
 
-const welcomeConfigPath = path.join(__dirname, "../../configs/welcome-config.json");
+const welcomeMessage = require("../../schemas/welcomeMessage");
 
 function isValidHexColor(str) {
 	return /^([0-9A-F]{3}){1,2}$/i.test(str);
@@ -15,10 +14,6 @@ function isUrl(str) {
 	
 	// Return true if the string matches the URL pattern, false otherwise
 	return urlPattern.test(str);
-  }
-
-function saveJSON(filePath, json) {
-	return fs.writeFileSync(filePath, JSON.stringify(json));
 }
 
 module.exports = {
@@ -32,7 +27,6 @@ module.exports = {
 	 */
 
 	async execute(interaction) {
-
 		await interaction.reply("Setup is now in progress. Each time you are required to respond there is a 15 second time limit.\nSome advanced functions:\n`[user]` --> Ping the user who just joined. Does not work in the embed title, it will just display `<@userID>`\n`[serverName] --> Name of the server. Works in all sections.`");
 
 		const filter = (message) => {
@@ -75,21 +69,35 @@ module.exports = {
 				return;
 			}
 
-			let embedData = JSON.parse(fs.readFileSync(welcomeConfigPath).toString());;
+			let data = await welcomeMessage.findOne({ guildID: interaction.guild.id });
 
-			embedData.Title = title.content;
-			embedData.Description = description.content;
-			embedData.Color = "#" + color.content;
-			embedData.Image = image.content;
-			embedData.Channel = channel; //.content.replace(/</g, "").replace(/#/g, "").replace(/>/g, "")
+			if (!data) {
+				data = await new welcomeMessage({
+					guildID: interaction.guild.id,
+					channel: channel,
+					color: "#" + color.content,
+					title: title.content,
+					description: description.content,
+					image: image.content
+				});
+				await data.save().then(async welcomeMessage => {console.log(chalk.green(`[Data Created] GuildID: ${welcomeMessage.guildID}`))}).catch(console.error);
+			} else {
+				data = {
+					guildID: interaction.guild.id,
+					channel: channel,
+					color: "#" + color.content,
+					title: title.content,
+					description: description.content,
+					image: image.content
+				};
+				await welcomeMessage.findOneAndUpdate({ guildID: interaction.guild.id }, data);
+			}
 
 			const embed = new EmbedBuilder()
-				.setColor(embedData.Color)
-				.setTitle(embedData.Title)
-				.setDescription(embedData.Description)
-				.setImage(embedData.Image);
-
-			saveJSON(welcomeConfigPath, embedData);
+				.setColor(data.color)
+				.setTitle(data.title.replaceAll("[user]", `${interaction.user}`).replaceAll("[serverName]", `${interaction.guild.name}`))
+				.setDescription(data.description.replaceAll("[user]", `${interaction.user}`).replaceAll("[serverName]", `${interaction.guild.name}`))
+				.setImage(data.image);
 
 			await interaction.channel.send({ content:"Here is a preview of the embed!", embeds: [embed] });
 		} catch (error) {

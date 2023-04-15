@@ -6,6 +6,8 @@ const process = require("node:process");
 const commandHandler = require("./handlers/commandHandler");
 const eventHandler = require("./handlers/eventHandler");
 
+const { connect } = require("mongoose");
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
@@ -24,5 +26,9 @@ eventHandler(client);
 process.on("unhandledRejection", (reason, promise) => {
     console.log("UnhandledRejection at:", promise, "Reason:", reason);
 });
+
+(async () => {
+    await connect(process.env.MONGODB_TOKEN).catch(console.error);
+})();
 
 client.login(process.env.DISCORD_API_TOKEN);

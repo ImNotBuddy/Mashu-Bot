@@ -31,7 +31,7 @@ module.exports = {
 
     async execute(interaction) {
         const subcommand = interaction.options.getSubcommand();
-        const target = interaction.options.getUser("target") ?? interaction.user;
+        const target = interaction.options.getUser("target") || interaction.user;
         const URL = `https://discord.com/api/users/${target.id}`;
         const token = process.env.DISCORD_API_TOKEN;
 
