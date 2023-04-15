@@ -3,11 +3,11 @@ const justreddit  = require("justreddit");
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName("reddit-image")
-		.setDescription("Post a random reddit image from a desired subreddit")
+		.setName("reddit")
+		.setDescription("Post a random image from a subreddit. The 'r/' and spaces are optional")
         .addStringOption(option => 
             option.setName("subreddit")
-                .setDescription("Subreddit to fetch an image from")
+                .setDescription("Subreddit to get the image from")
                 .setRequired(true)),
 
 	/**
@@ -16,16 +16,16 @@ module.exports = {
 	 */
 
 	async execute(interaction) {
-        const subreddit = interaction.options.getString("subreddit");
+        const subreddit = interaction.options.getString("subreddit").replaceAll("r/", "").replaceAll(" ", "");
         await interaction.deferReply();
         
         try {
             const post = await justreddit.randomImageFromSub({ subReddit: subreddit, sortType: "hot" });
-            if (post === "https://via.placeholder.com/150") {
+            if (post === "https://via.placeholder.com/150" || !post) {
                 await interaction.editReply(`The subreddit \`${subreddit}\` was not found/ did not have any images.`);
                 return;
             }
-		    await interaction.editReply(post);
+		    await interaction.editReply(`Image from: \`r/${subreddit}\`\n${post}`);
         } catch (error) {
             await interaction.editReply(`The subreddit ${subreddit} was not found/ did not have any images.`);
         }

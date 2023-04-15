@@ -27,13 +27,13 @@ module.exports = {
                 .setDescription("Replies with bot information"))
         .addSubcommand(subcommand =>
             subcommand.setName("user")
-                .setDescription("Replies with information about a desired user who is **in** the server")
+                .setDescription("Replies with information about a desired user who is *in* the server")
                 .addUserOption(option =>
                     option.setName("target")
                         .setDescription("Ping a user for their info or don't for your information")))
         .addSubcommand(subcommand =>
             subcommand.setName("lookup")
-                .setDescription("Replies with information about a user **outside** of the server")
+                .setDescription("Replies with information about a user *outside* of the server")
                 .addUserOption(option =>
                     option.setName("target")
                         .setDescription("Ping a user for their info")
