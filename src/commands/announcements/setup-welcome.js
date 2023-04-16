@@ -58,12 +58,12 @@ module.exports = {
 				return;
 			}
 
-			const channelMessage = await interaction.channel.send("Please send the ID of the channel in which you want the Welcome message to be sent.");
+			const channelMessage = await interaction.channel.send("Please send #channelNameHere or the ID of the channel in which you want the Welcome message to be sent.");
 			const channel = (await interaction.channel.awaitMessages({ filter, max: 1, time: 15000, errors: ["time"] })).first().content.replace(/</g, "").replace(/#/g, "").replace(/>/g, "");
 			
-			const channelObj = interaction.guild.channels.cache.get(channel);
+			const channelInServer = interaction.guild.channels.cache.get(channel);
 
-			if (!channelObj) {
+			if (!channelInServer) {
 				interaction.deleteReply();
 				await interaction.channel.send("Not a valid channel! Please try again as setup has been exited.");
 				return;
